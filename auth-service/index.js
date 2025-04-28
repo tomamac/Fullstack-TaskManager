@@ -3,6 +3,7 @@ const register = require("./routes/register");
 const login = require("./routes/login");
 const protectedRoutes = require("./routes/protected");
 const cors = require("cors");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
@@ -16,3 +17,9 @@ app.use("/api", protectedRoutes);
 
 const port = process.env.port || 5000;
 app.listen(port, () => console.log("http server run at " + port));
+
+// const dbUrl = "mongodb://localhost:27017/taskitDB";
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Connected to the Database"))
+  .catch((err) => console.log("Database connection error: ", err));
