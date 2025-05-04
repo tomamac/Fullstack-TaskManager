@@ -15,7 +15,7 @@ app.use("/api/auth", register);
 app.use("/api/auth", login);
 app.use("/api", protectedRoutes);
 
-const port = process.env.port || 5000;
+const port = process.env.port || 8001;
 app.listen(port, () => console.log("http server run at " + port));
 
 // const dbUrl = "mongodb://localhost:27017/taskitDB";
