@@ -1,6 +1,5 @@
 const express = require("express");
-const register = require("./routes/register");
-const login = require("./routes/login");
+const auth = require("./routes/auth");
 const protectedRoutes = require("./routes/protected");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -11,8 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/auth", register);
-app.use("/api/auth", login);
+app.use("/api/auth", auth);
 app.use("/api", protectedRoutes);
 
 const port = process.env.port || 8001;
