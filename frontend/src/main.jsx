@@ -4,11 +4,14 @@ import "./styles/index.css";
 import "./styles/responsive-grid.css";
 import { BrowserRouter } from "react-router";
 import App from "./App.jsx";
+import { SnackProvider } from "./contexts/snackcontext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <SnackProvider>
+        <App />
+      </SnackProvider>
     </BrowserRouter>
   </StrictMode>
 );

@@ -16,6 +16,10 @@
     z-index: 100;
 }
 
+.navbar button,a{
+    all: unset;
+}
+
 .content{
     flex: 1;
 }

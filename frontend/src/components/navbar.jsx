@@ -2,6 +2,7 @@ import Modal from "./modal";
 import { useState } from "react";
 import Register from "../pages/register";
 import Login from "../pages/login";
+import { Link } from "react-router";
 
 function Navbar({ isLoggedIn }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,12 +13,17 @@ function Navbar({ isLoggedIn }) {
     setIsModalOpen(true);
   }
 
+  function handleCloseModal() {
+    setIsModalOpen(false);
+    setModalType("");
+  }
+
   function renderModal() {
     switch (modalType) {
       case "register":
-        return <Register />;
+        return <Register handleCloseModal={handleCloseModal} />;
       case "login":
-        return <Login />;
+        return <Login handleCloseModal={handleCloseModal} />;
       default:
         return null;
     }
@@ -27,40 +33,40 @@ function Navbar({ isLoggedIn }) {
     <>
       <div className="row navbar">
         <div className="col-7">
-          <a style={{ cursor: "pointer" }}>Taskit</a>
+          <Link to="/" style={{ cursor: "pointer" }}>Taskit</Link>
         </div>
         <div className="col-5 row" style={{ justifyContent: "flex-end" }}>
           {isLoggedIn ? (
             <>
-              <a href="" style={{ margin: "10px", cursor: "pointer" }}>
+              <button href="" style={{ margin: "10px", cursor: "pointer" }}>
                 Dashboard
-              </a>
-              <a style={{ margin: "10px", cursor: "pointer" }}>Logout</a>
+              </button>
+              <button style={{ margin: "10px", cursor: "pointer" }}>Logout</button>
             </>
           ) : (
             <>
-              <a
+              <button
                 style={{ margin: "10px", cursor: "pointer" }}
                 onClick={() => {
                   handleOpenModal("register");
                 }}
               >
                 Register
-              </a>
-              <a
+              </button>
+              <button
                 style={{ margin: "10px", cursor: "pointer" }}
                 onClick={() => {
                   handleOpenModal("login");
                 }}
               >
                 Login
-              </a>
+              </button>
             </>
           )}
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          {renderModal()}
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        {renderModal()}
       </Modal>
     </>
   );

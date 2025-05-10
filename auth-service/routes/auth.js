@@ -22,6 +22,7 @@ router.post("/register", async (req, res) => {
     res.status(201).json({ message: "User registered successfully" });
   } catch (err) {
     console.log(err.message);
+    console.log(username, password);
     res.status(500).json({ message: "Something went wrong" });
   }
 });
@@ -44,6 +45,7 @@ router.post("/login", async (req, res) => {
       .cookie("jwt", token, {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        secure: true,
       })
       .json({
         id: user._id,
