@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/users");
+const jwtAuth = require("../middleware/auth");
 
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -59,7 +60,24 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/logout", async (req, res) => {
-  res.clearCookie("jwt");
+  res.clearCookie("jwt", {
+    httpOnly: true,
+    secure: true,
+  });
+  res.status(200).json({ message: "Logged out successfully" });
+});
+
+router.get("/me", jwtAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user).select("-password");
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.json(user);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ message: "Something went wrong" });
+  }
 });
 
 module.exports = router;

@@ -8,6 +8,7 @@ import (
 	"task-service/middleware"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -48,6 +49,10 @@ func main() {
 	taskHandler := adapters.NewHttpTaskHandler(taskService)
 
 	//routes
+	app.Use(cors.New((cors.Config{
+		AllowOrigins:     "http://localhost:5173",
+		AllowCredentials: true,
+	})))
 	app.Use("/api/tasks", middleware.Auth)
 	app.Post("/api/tasks", taskHandler.CreateTask)
 	app.Get("/api/tasks", taskHandler.GetTasks)

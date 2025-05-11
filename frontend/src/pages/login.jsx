@@ -2,11 +2,13 @@ import { useState } from "react";
 import "../styles/modal-form.css";
 import axios from "axios";
 import { useSnackDispatch } from "../contexts/snackcontext";
+import { useNavigate } from "react-router";
 
-function Login({ handleCloseModal }) {
+function Login({ handleCloseModal, setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const snackdispatch = useSnackDispatch();
+  const navigate = useNavigate();
 
   async function postLogin() {
     try {
@@ -22,6 +24,8 @@ function Login({ handleCloseModal }) {
       setUsername("");
       setPassword("");
 
+      setIsLoggedIn(true);
+      navigate("/dashboard");
       snackdispatch({ type: "show", message: "เข้าสู่ระบบสำเร็จ" });
       console.log(res.data);
       handleCloseModal();

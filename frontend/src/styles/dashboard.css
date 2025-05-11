@@ -1,0 +1,38 @@
+.dashboard-container {
+    justify-items: center;
+    text-align: center;
+}
+
+.add {
+    all: unset;
+    background-color: rgb(114, 180, 255);
+    width: 100px;
+    height: 50px;
+    /* border-radius: 5px; */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.add:hover {
+    background-color: rgb(88, 139, 197);
+}
+
+.dashboard-container input {
+    height: 50px;
+    /* border-radius: 5px; */
+    border: 1px solid black;
+    font-size: 16px;
+}
+
+@media screen and (min-width: 0px) {
+    .card-container {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .card-container {
+        width: 60%;
+    }
+}

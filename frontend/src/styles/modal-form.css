@@ -1,9 +1,9 @@
-form {
+.modal form {
     width: 100%;
     justify-items: center;
 }
 
-input {
+.modal input {
     margin: 10px;
     padding-left: 15px;
     height: 50px;
@@ -12,11 +12,11 @@ input {
     border-radius: 25px;
 }
 
-h2 {
+.modal h2 {
     margin: 0;
 }
 
-button.submit{
+.modal button.submit{
     margin-top: 10px;
     width: 150px;
     height: 50px;
@@ -30,11 +30,11 @@ button.submit{
     transition: linear 0.2s;
 }
 
-button.submit:hover{
+.modal button.submit:hover{
     background-color: #6d9bc7;
 }
 
-.form-container {
+.modal .form-container {
     margin: 20px;
     text-align: center;
 }

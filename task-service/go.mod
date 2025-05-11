@@ -4,6 +4,8 @@ go 1.24.2
 
 require gorm.io/driver/postgres v1.5.11
 
+require github.com/rs/cors v1.11.1 // indirect
+
 require (
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/gofiber/fiber/v2 v2.52.6 // indirect
