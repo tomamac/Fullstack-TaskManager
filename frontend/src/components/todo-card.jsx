@@ -1,19 +1,12 @@
 import "../styles/todocard.css";
-import Modal from "../components/modal";
-import { useState, useEffect } from "react";
 
-function TodoCard({ task, setSelectedTask, setOpenModal, handleDeleteTask }) {
-  function handleEdit() {
-    setSelectedTask(task.id);
-    setOpenModal(true);
-  }
-
+function TodoCard({ task, handleDeleteTask, handleEditModal }) {
   return (
     <div className="row card">
       <p className="col title">{task.title}</p>
       <div className="col-auto">
-        <button className="edit" onClick={handleEdit}>
-          Edit
+        <button className="edit" onClick={() => handleEditModal(task.id)}>
+          แก้ไข
         </button>
         <button
           className="delete"
@@ -21,7 +14,7 @@ function TodoCard({ task, setSelectedTask, setOpenModal, handleDeleteTask }) {
             handleDeleteTask(task.id);
           }}
         >
-          Delete
+          ลบ
         </button>
       </div>
     </div>

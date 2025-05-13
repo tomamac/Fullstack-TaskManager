@@ -70,13 +70,13 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                 to="/dashboard"
                 style={{ margin: "10px", cursor: "pointer" }}
               >
-                Dashboard
+                แดชบอร์ด
               </Link>
               <button
                 style={{ margin: "10px", cursor: "pointer" }}
                 onClick={handleLogout}
               >
-                Logout
+                ออกจากระบบ
               </button>
             </>
           ) : (
@@ -87,7 +87,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                   handleOpenModal("register");
                 }}
               >
-                Register
+                สมัครสมาชิก
               </button>
               <button
                 style={{ margin: "10px", cursor: "pointer" }}
@@ -95,7 +95,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                   handleOpenModal("login");
                 }}
               >
-                Login
+                เข้าสู่ระบบ
               </button>
             </>
           )}

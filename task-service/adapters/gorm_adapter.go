@@ -46,6 +46,18 @@ func (r *GormTaskRepository) Search(userid string, title string) ([]core.Task, e
 	return tasks, nil
 }
 
+func (r *GormTaskRepository) GetByID(userid string, id uint) (core.Task, error) {
+	var task core.Task
+
+	result := r.db.Where("user_id = ?", userid).First(&task, id)
+
+	if result.Error != nil {
+		return task, result.Error
+	}
+
+	return task, nil
+}
+
 func (r *GormTaskRepository) Update(task core.Task) error {
 	result := r.db.Save(&task)
 

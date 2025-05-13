@@ -56,10 +56,33 @@ func (h *HttpTaskHandler) GetTasks(c *fiber.Ctx) error {
 	}
 
 	if err != nil {
-		return c.JSON(fiber.Map{"tasks": tasks})
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"message": "Not found"})
 	}
 
 	return c.JSON(fiber.Map{"tasks": tasks})
+}
+
+func (h *HttpTaskHandler) GetTask(c *fiber.Ctx) error {
+	id, err := strconv.Atoi(c.Params("id"))
+
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Wrong format"})
+	}
+
+	userid, ok := c.Locals("userid").(string)
+
+	if !ok {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"message": "User id missing or iinvalid"})
+	}
+
+	task, err := h.service.GetTaskByID(userid, uint(id))
+
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"message": "Not found"})
+	}
+
+	return c.JSON(fiber.Map{"task": task})
+
 }
 
 func (h *HttpTaskHandler) UpdateTask(c *fiber.Ctx) error {
@@ -69,6 +92,12 @@ func (h *HttpTaskHandler) UpdateTask(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Wrong format"})
 	}
 
+	userid, ok := c.Locals("userid").(string)
+
+	if !ok {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"message": "User id missing or iinvalid"})
+	}
+
 	var task core.Task
 
 	if err := c.BodyParser(&task); err != nil {
@@ -76,6 +105,7 @@ func (h *HttpTaskHandler) UpdateTask(c *fiber.Ctx) error {
 	}
 
 	task.ID = uint(id)
+	task.UserID = userid
 
 	if err := h.service.UpdateTask(task); err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": err.Error()})

@@ -56,6 +56,7 @@ func main() {
 	app.Use("/api/tasks", middleware.Auth)
 	app.Post("/api/tasks", taskHandler.CreateTask)
 	app.Get("/api/tasks", taskHandler.GetTasks)
+	app.Get("/api/tasks/:id", taskHandler.GetTask)
 	app.Put("/api/tasks/:id", taskHandler.UpdateTask)
 	app.Delete("/api/tasks/:id", taskHandler.DeleteTask)
 

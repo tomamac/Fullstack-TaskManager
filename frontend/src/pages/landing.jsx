@@ -9,12 +9,12 @@ import postgreslogo from "../assets/postgres.png";
 export default function Landing() {
   return (
     <div className="content" style={{ textAlign: "center", alignContent:'center'}}>
-      <p>Welcome to taskit landing page</p>
+      <p>ยินดีต้อนรับสู่หน้าแรกของ Taskit</p>
       <p>
-        This web app is developed with MongoDB, Express, React, Node, Golang and
+        เว็บแอพ ฯ นี้ถูกพัฒนาด้วย MongoDB, Express, React, Node, Golang และ
         Postgresql
       </p>
-      <p>Register or login to get started</p>
+      <p>สมัครสมาชิกหรือเข้าสู่ระบบเพื่อเริ่มใช้งาน</p>
       <div style={{justifySelf:'center', alignContent:'center', height:'200px'}}>
         <img src={mongologo} alt="" />
         <img src={expresslogo} alt="" />
