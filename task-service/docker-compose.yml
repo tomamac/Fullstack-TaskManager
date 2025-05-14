@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  # เพิ่มสำหรับทดสอบการ run app บน network เดียวกัน
+  app:
+    build: .
+    ports:
+      - "8002:8002"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

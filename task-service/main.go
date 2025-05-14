@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
+	"strconv"
 	"task-service/adapters"
 	"task-service/core"
 	"task-service/middleware"
@@ -14,18 +16,16 @@ import (
 	"gorm.io/gorm"
 )
 
-const (
-	host         = "localhost"
-	port         = 5432
-	databaseName = "taskitDB"
-	username     = "postgres"
-	password     = "root"
-)
-
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Fatal("load .env error")
 	}
+
+	host := os.Getenv("POSTGRES_HOST")
+	port, _ := strconv.Atoi(os.Getenv("POSTGRES_PORT"))
+	databaseName := os.Getenv("POSTGRES_DB")   //"taskitDB"
+	username := os.Getenv("POSTGRES_USER")     //"postgres"
+	password := os.Getenv("POSTGRES_PASSWORD") //"root"
 
 	app := fiber.New()
 
