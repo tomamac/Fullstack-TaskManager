@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 
 	// "log"
 	"os"
@@ -13,7 +12,6 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.com/joho/godotenv"
 
 	// "github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
@@ -21,9 +19,9 @@ import (
 )
 
 func main() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("load .env error")
-	}
+	// if err := godotenv.Load(); err != nil {
+	// 	log.Fatal("load .env error")
+	// }
 
 	host := os.Getenv("POSTGRES_HOST")
 	port, _ := strconv.Atoi(os.Getenv("POSTGRES_PORT"))
