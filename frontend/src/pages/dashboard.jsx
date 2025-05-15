@@ -20,7 +20,10 @@ function Dashboard() {
           "https://taskit-tasks.onrender.com/api/tasks",
           // "http://localhost:8002/api/tasks",
           {
-            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            },
+            // withCredentials: true,
           }
         );
 
@@ -44,7 +47,12 @@ function Dashboard() {
         "https://taskit-tasks.onrender.com/api/tasks",
         // "http://localhost:8002/api/tasks",
         { title: newTask, isDone: false },
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+          // withCredentials: true,
+        }
       );
 
       setTasks([...tasks, res.data.task]);
@@ -69,7 +77,10 @@ function Dashboard() {
         `https://taskit-tasks.onrender.com/api/tasks/${taskid}`,
         // `http://localhost:8002/api/tasks/${taskid}`,
         {
-          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+          // withCredentials: true,
         }
       );
 
@@ -93,7 +104,12 @@ function Dashboard() {
         `https://taskit-tasks.onrender.com/api/tasks${selectedTask.id}`,
         // `http://localhost:8002/api/tasks/${selectedTask.id}`,
         { title: title, isDone: selectedTask.isDone },
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+          // withCredentials: true
+        }
       );
 
       setTasks(
@@ -126,7 +142,10 @@ function Dashboard() {
         `https://taskit-tasks.onrender.com/api/tasks${taskid}`,
         // `http://localhost:8002/api/tasks/${taskid}`,
         {
-          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+          // withCredentials: true,
         }
       );
 

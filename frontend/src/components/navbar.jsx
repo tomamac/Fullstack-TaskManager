@@ -3,7 +3,7 @@ import { useState } from "react";
 import Register from "../pages/register";
 import Login from "../pages/login";
 import { Link, useNavigate } from "react-router";
-import axios from "axios";
+// import axios from "axios";
 import { useSnackDispatch } from "../contexts/snackcontext";
 
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
@@ -23,23 +23,25 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
   }
 
   async function handleLogout() {
-    try {
-      const res = await axios.get(
-        "https://taskit-auth.onrender.com/api/auth/logout",
-        // "http://localhost:8001/api/auth/logout",
-         {
-        withCredentials: true,
-      });
+    // try {
+    //   const res = await axios.get(
+    //     "https://taskit-auth.onrender.com/api/auth/logout"
+    // "http://localhost:8001/api/auth/logout",
+    // {
+    //   withCredentials: true,
+    // }
+    // );
 
-      setIsLoggedIn(false);
-      navigate("/");
-      snackdispatch({ type: "show", message: "ออกจากระบบเรียบร้อยแล้ว" });
-      console.log(res.data);
-    } catch (error) {
-      console.log("test");
-      snackdispatch({ type: "show", message: "กรุณาลองใหม่อีกครั้ง" });
-      console.log("error ", error);
-    }
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    navigate("/");
+    snackdispatch({ type: "show", message: "ออกจากระบบเรียบร้อยแล้ว" });
+    //   console.log(res.data);
+    // } catch (error) {
+    //   console.log("test");
+    //   snackdispatch({ type: "show", message: "กรุณาลองใหม่อีกครั้ง" });
+    //   console.log("error ", error);
+    // }
   }
 
   function renderModalContent() {

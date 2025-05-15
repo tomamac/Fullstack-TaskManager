@@ -11,7 +11,7 @@ const app = express();
 app.use(
   cors({
     origin: ["http://localhost:5173", "https://taskit-4i9b.onrender.com"],
-    credentials: true,
+    // credentials: true,
   })
 );
 app.use(express.json());

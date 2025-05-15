@@ -43,16 +43,17 @@ router.post("/login", async (req, res) => {
     });
 
     res
-      .cookie("jwt", token, {
-        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-      })
+      // .cookie("jwt", token, {
+      //   expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      //   httpOnly: true,
+      //   secure: true,
+      //   sameSite: "none",
+      // })
       .json({
         id: user._id,
         username: user.username,
         displayname: user.displayname,
+        token: token
       });
   } catch (error) {
     console.log(error.message);
@@ -60,14 +61,14 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/logout", async (req, res) => {
-  res.clearCookie("jwt", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "none",
-  });
-  res.status(200).json({ message: "Logged out successfully" });
-});
+// router.get("/logout", async (req, res) => {
+//   res.clearCookie("jwt", {
+//     httpOnly: true,
+//     secure: true,
+//     sameSite: "none",
+//   });
+//   res.status(200).json({ message: "Logged out successfully" });
+// });
 
 router.get("/me", jwtAuth, async (req, res) => {
   try {

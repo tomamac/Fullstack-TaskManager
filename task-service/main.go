@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"log"
+
 	// "log"
 	"os"
 	"strconv"
@@ -11,6 +13,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/joho/godotenv"
 
 	// "github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
@@ -18,9 +21,9 @@ import (
 )
 
 func main() {
-	// if err := godotenv.Load(); err != nil {
-	// 	log.Fatal("load .env error")
-	// }
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("load .env error")
+	}
 
 	host := os.Getenv("POSTGRES_HOST")
 	port, _ := strconv.Atoi(os.Getenv("POSTGRES_PORT"))
@@ -51,8 +54,8 @@ func main() {
 
 	//routes
 	app.Use(cors.New((cors.Config{
-		AllowOrigins:     "http://localhost:5173,https://taskit-4i9b.onrender.com",
-		AllowCredentials: true,
+		AllowOrigins: "http://localhost:5173,https://taskit-4i9b.onrender.com",
+		// AllowCredentials: true,
 	})))
 	app.Use("/api/tasks", middleware.Auth)
 	app.Post("/api/tasks", taskHandler.CreateTask)
