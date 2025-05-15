@@ -20,9 +20,13 @@ function App() {
   useEffect(() => {
     async function fetchProfile() {
       try {
-        const res = await axios.get("http://localhost:8001/api/auth/me", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://taskit-auth.onrender.com/api/auth/me",
+          // "http://localhost:8001/api/auth/me",
+          {
+            withCredentials: true,
+          }
+        );
         setIsLoggedIn(true);
         snackdispatch({
           type: "show",

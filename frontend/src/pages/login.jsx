@@ -13,7 +13,8 @@ function Login({ handleCloseModal, setIsLoggedIn }) {
   async function postLogin() {
     try {
       const res = await axios.post(
-        "http://localhost:8001/api/auth/login",
+        "https://taskit-auth.onrender.com/api/auth/login",
+        // "http://localhost:8001/api/auth/login",
         JSON.stringify({ username, password }),
         {
           headers: { "Content-Type": "application/json" },

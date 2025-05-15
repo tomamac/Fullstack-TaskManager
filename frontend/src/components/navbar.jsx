@@ -24,7 +24,10 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
   async function handleLogout() {
     try {
-      const res = await axios.get("http://localhost:8001/api/auth/logout", {
+      const res = await axios.get(
+        "https://taskit-auth.onrender.com/api/auth/logout",
+        // "http://localhost:8001/api/auth/logout",
+         {
         withCredentials: true,
       });
 

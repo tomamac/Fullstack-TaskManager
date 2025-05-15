@@ -16,9 +16,13 @@ function Dashboard() {
   useEffect(() => {
     async function fetchTasks() {
       try {
-        const res = await axios.get("http://localhost:8002/api/tasks", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://taskit-tasks.onrender.com/api/tasks",
+          // "http://localhost:8002/api/tasks",
+          {
+            withCredentials: true,
+          }
+        );
 
         setTasks(res.data.tasks);
         console.log(res.data.tasks);
@@ -37,7 +41,8 @@ function Dashboard() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8002/api/tasks",
+        "https://taskit-tasks.onrender.com/api/tasks",
+        // "http://localhost:8002/api/tasks",
         { title: newTask, isDone: false },
         { withCredentials: true }
       );
@@ -60,9 +65,13 @@ function Dashboard() {
 
   async function handleEditModal(taskid) {
     try {
-      const res = await axios.get(`http://localhost:8002/api/tasks/${taskid}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `https://taskit-tasks.onrender.com/api/tasks/${taskid}`,
+        // `http://localhost:8002/api/tasks/${taskid}`,
+        {
+          withCredentials: true,
+        }
+      );
 
       setSelectedTask(res.data.task);
       setIsModalOpen(true);
@@ -81,7 +90,8 @@ function Dashboard() {
 
     try {
       const res = await axios.put(
-        `http://localhost:8002/api/tasks/${selectedTask.id}`,
+        `https://taskit-tasks.onrender.com/api/tasks${selectedTask.id}`,
+        // `http://localhost:8002/api/tasks/${selectedTask.id}`,
         { title: title, isDone: selectedTask.isDone },
         { withCredentials: true }
       );
@@ -113,7 +123,8 @@ function Dashboard() {
   async function handleDeleteTask(taskid) {
     try {
       const res = await axios.delete(
-        `http://localhost:8002/api/tasks/${taskid}`,
+        `https://taskit-tasks.onrender.com/api/tasks${taskid}`,
+        // `http://localhost:8002/api/tasks/${taskid}`,
         {
           withCredentials: true,
         }
