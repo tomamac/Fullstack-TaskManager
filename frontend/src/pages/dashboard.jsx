@@ -101,7 +101,7 @@ function Dashboard() {
 
     try {
       const res = await axios.put(
-        `https://taskit-tasks.onrender.com/api/tasks${selectedTask.id}`,
+        `https://taskit-tasks.onrender.com/api/tasks/${selectedTask.id}`,
         // `http://localhost:8002/api/tasks/${selectedTask.id}`,
         { title: title, isDone: selectedTask.isDone },
         {
@@ -139,7 +139,7 @@ function Dashboard() {
   async function handleDeleteTask(taskid) {
     try {
       const res = await axios.delete(
-        `https://taskit-tasks.onrender.com/api/tasks${taskid}`,
+        `https://taskit-tasks.onrender.com/api/tasks/${taskid}`,
         // `http://localhost:8002/api/tasks/${taskid}`,
         {
           headers: {
