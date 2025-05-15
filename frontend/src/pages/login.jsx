@@ -15,14 +15,15 @@ function Login({ handleCloseModal, setIsLoggedIn }) {
       const res = await axios.post(
         "https://taskit-auth.onrender.com/api/auth/login",
         // "http://localhost:8001/api/auth/login",
-        JSON.stringify({ username, password }),
+        { username: username, password: password }
+        // JSON.stringify({ username, password }),
         // {
         //   headers: { "Content-Type": "application/json" },
         //   withCredentials: true,
         // }
       );
 
-      localStorage.setItem("jwt",res.data.token);
+      localStorage.setItem("jwt", res.data.token);
 
       setUsername("");
       setPassword("");

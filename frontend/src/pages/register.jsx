@@ -14,7 +14,8 @@ function Register({ handleCloseModal }) {
       const res = await axios.post(
         "https://taskit-auth.onrender.com/api/auth/register",
         // "http://localhost:8001/api/auth/register",
-        JSON.stringify({ username, password })
+        { username: username, password: password }
+        // JSON.stringify({ username, password })
         // {
         //   headers: { "Content-Type": "application/json" },
         //   withCredentials: true,
