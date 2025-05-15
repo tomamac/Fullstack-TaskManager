@@ -51,7 +51,7 @@ func main() {
 
 	//routes
 	app.Use(cors.New((cors.Config{
-		AllowOrigins:     "http://localhost:5173, https://taskit-4i9b.onrender.com/",
+		AllowOrigins:     "http://localhost:5173, https://taskit-4i9b.onrender.com",
 		AllowCredentials: true,
 	})))
 	app.Use("/api/tasks", middleware.Auth)
